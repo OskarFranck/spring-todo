@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+</head>
+<body>
+<h1 style="padding: 10px">TODO application</h1>
+<a href="/todos" style="margin: 10px" >Todos list</a><br/>
+<a href="/create-todo" style="margin: 10px">Create new todo</a><br/>
+<a href="/role" style="margin: 10px">Check role</a><br/>
+<a href="/logout" style="margin: 10px">Logout</a><br/>
+<a sec:authorize="hasRole('ROLE_ADMIN')" href="/api/v1/todos" style="margin: 10px">Api todos</a>
+</body>
+</html>

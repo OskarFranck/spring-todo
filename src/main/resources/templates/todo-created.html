@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Todo App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Todo created</h1>
+<p th:text="'title: ' + ${todo.title}" />
+<p th:text="'task: ' + ${todo.task}" />
+<a href="/create-todo">Create Another Todo</a><br/>
+<a href="/todos">Todos list</a>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+</head>
+<body>
+<h1>TODO application</h1>
+<div sec:authorize="${hasRole('USER')}" style="margin-bottom: 10px">Role: User</div>
+<div sec:authorize="${hasRole('ADMIN')}" style="margin-bottom: 10px">Role: Admin</div>
+<a href="/home" style="margin-top: 10px">Back to home</a>
+</body>
+</html>
