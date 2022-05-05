@@ -18,18 +18,18 @@ public class WebController {
     private final ToDoService toDoService;
     private final UserDetailsService userDetailsService;
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @RequestMapping("/login-error")
+    @GetMapping("/login-error")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "login";
     }
 
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public String home() {
         return "home";
     }
@@ -45,6 +45,12 @@ public class WebController {
         return "todos";
     }
 
+    @GetMapping("/user-todos/{id}")
+    public String userTodos(@PathVariable(name = "id") Long userId, Model model) {
+        model.addAttribute("userTodos", toDoService.getToDoForUser(userId));
+        return "user-todos";
+    }
+
     @GetMapping("/create-todo")
     public String todo (Model model) {
         model.addAttribute("todo", new ToDoModel());
@@ -57,13 +63,13 @@ public class WebController {
         return "todo-created";
     }
 
-    @RequestMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteTodo(@PathVariable(name = "id") Long id) {
         toDoService.deleteTodo(id);
         return "redirect:/todos";
     }
 
-    @RequestMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String TodoUpdated(@PathVariable(name = "id") Long id, @ModelAttribute ToDoModel toDoModel, Model model) {
         model.addAttribute("todo", toDoService.updateTodo(id, toDoModel));
         return "redirect:/todos";

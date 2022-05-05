@@ -42,10 +42,14 @@ public class ToDoService {
         return status;
     }
 
+    public Optional<ToDoModel> getToDoForUser(Long userId) {
+        return toDoRepository.findAllByUserId(userId);
+    }
+
     public ToDoModel updateTodo(Long id, ToDoModel toDoModel) {
         Optional<ToDoModel> optionalToDoModel = toDoRepository.findById(id);
         ToDoModel existingTodo = optionalToDoModel.map(todo -> new ToDoModel(todo.getTask())).orElse(null);
-        if (existingTodo == null) throw new Error();
+        if (existingTodo == null) throw new Error("gg");
         existingTodo.setId(toDoModel.getId());
         if (toDoModel.getTitle().isEmpty()) {
             existingTodo.setTitle(optionalToDoModel.get().getTitle());
